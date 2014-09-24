@@ -1,0 +1,249 @@
+Lab 1 - Requirements Gathering
+
+
+WAITERS
+
+1.Q: Must clients pay for the order immediately after its entered to the system or can the bill be left open? 
+A: The bill can be left open
+2.Q: Must an open bill have a limit? If so, will it depend on the client? 
+A: An open bill should have a limit of 100 eur and 200eur for a regular customer.
+3.Q: Should waiters be able to hand the bill over to the other waiter? 
+A: Yes
+4.Q: Should we support credit cards at all? 
+A: Yes we should.
+5.Q: Which credit cards?
+A: Most common credit cards.
+6.Q: Can the open bill limit be increased if client is using an accepted credit card?
+A: The limit can be increased when the client is using an accepted credit card.
+7.Q: Should the system be multilingual? 
+A: No need for that. The system should be in english.
+8.Q: Does the restaurant have table service?
+A: Yes
+9.Q: Should customers be able to split the bill?
+A: Yes 
+10.Q: Is there a client card?
+A: Yes
+11.Q: What are the bonuses of the client card?
+A: Regular discount of -5% and on customers birthday month -10%. 
+12.Q: Are client cards for free?
+A: No, you have buy one.
+13.Q: Does the client card have an expiration date?
+A: No
+14.Q: Can clients book tables?
+A: Yes
+15.Q: Should the system show booked tables?
+A: Yes, a different colour perhaps
+16.Q: Can a waiter enter a booking to the system?
+A: Yes
+17.Q: Should customers be able to call a waiter electronically?
+A: No, we have a different system for that.
+18.Q: Can a waiter edit or end another waiters bill?
+A: No, only the head waiter should be able to edit all the bills.
+19.Q: How do you calculate TIP?
+A: We accept TIP in cash.
+20.Q: Can a waiter add or remove goods from the system?
+A: No, head waiter only.
+
+
+HEAD WAITER
+
+1.Q:Would you like to have a function, that can be used to send the bill to client’s e-mail?
+A: Sure.
+2.Q: Is it your task to send the bill to client’s e-mail?
+A: No, the waiters also can do that.
+3.Q: Should the POS allow to record the employees entering and exiting the system? (employee time tracking)   
+A: Yes, then i know how many hours waiters are at work.
+4.Q: Should the POS allow to record cash registers initial and end states?
+A: Yes
+5.Q: Do you need to be able to add new goods to the system?
+A: Yes
+6.Q: Do you also can remove the goods from the system?
+A: Yes
+7.Q: How to you advertise your restaurant?
+A: We send the adverstisement to the regular customers’ e-mail.
+8.Q: Do you need their phone numbers as well?
+A: Yes
+9.Q: How will you use the phone number?
+A: We send advertisements in a text message.
+10.Q: Shoud the customer have a choice between e-mail and text message?
+A: Yes. They can have both also.
+11.Q: Are the regular customers asked if they want to get advertisements?
+A: Yes
+12.Q: How often are advertisements sent?
+A: Once in a month and before upcoming events.
+13.Q: Can you change waiters bills ?
+A: Yes, i am able to do that.
+14.Q: Can you also revoke the bill?
+A: Yes
+15.Q: Do you need tutorials how to use POS system?
+A: Yes, then employees become familiar with the system
+16.Q: Do you need possibility to review logs of sales?
+A: I have to be able to review logs of the sales to make reports
+17.Q: How would you like to search products?
+A: By entering keywords
+18.Q: Do you have gift cards?
+A: Yes, we have cards for 10, 20 and 50 euros
+19.Q: Would you also like digital gift cards?
+A: No need.
+20.Q: Should the waiters get reminders to ask for ID?
+A: Yes
+
+
+IT-GUY
+
+1.Q: Is the card authorization processed by the POS computer, or from outside equipment?
+A: Outside equipment.
+2.Q: What type of reports does the POS system produce?
+A: Reports about transactions and changes made by user.
+3.Q: Where should data be stored?
+A: On the hard drive of the POS system computer.
+4.Q: How would data have to be secured?
+A: Data would have to be secured by malware protection and by making backups.
+5.Q: Are there any requirements that POS system would have to have to the computer?
+A: No, hardware will be selected by the needs of the software.
+6.Q: Should POS software be accessible from different place, for example store and home?
+A:Yes.
+7.Q: What kind of POS system components are being used?
+A:  A POS system consists of a computer, cash drawer, bardcode scanner, receipt printer, programmable keyboard or, and the appropriate point of sale applications and POS software
+8.Q:What kind of informatin the POS software should provide?
+A: Pertinent informatsion such as menu items, price listing, manager passwords, employee information and server numbers.
+9.Q: Do you need possibility to customize the system?
+A: Yes, there should be couple of themes to make system user-friendlier. For example dark, light, nature
+10.Q: Does the POS system need to give feedback about transactions?
+A: It should provide snapshot feedback which describes current state of the transaction and calculated result of transaction before & after committing a transaction.
+11.Q: Do you need possibility to customise layout for handedness and dexterity ?
+A: Yes, we need two different layouts depending on handedness.
+12.Q: Should the system send birthday wishes to the regular clients and employees?
+A: Yes
+13.Q: How many users are usually using system at the same time?
+A: Up to two per front.
+14.Q: Shoud there be a help option, where you can ask a question about the system?
+A: Yes. 
+15.Q: Would the POS system be used as an office computer (for using the Internet, writing e-mails, etc)?
+A: Yes it would.
+16.Q: Should POS system support multiple stores?
+A: Yes.
+17.Q: Is it important that POS can be installed without specialist?
+A: No but it is preferred.
+18.Q: Should you be able to make extra configurations to POS power feed due to POS being sensitive to power interuptions.
+A: Yes.
+19.Q: Should system be compatible with QuickBooks or other accounting software?
+A:Yes it should.
+20.Q: Should software be multilingual?
+A:No need for that. The system should be in english.
+
+
+RESTAURANT MANAGER
+
+1.Q: Are there any differences in the mentioned operations between different countries?
+A: No there aren’t
+2.Q: Do you have different customer groups?
+A: Regular customers and customers who don’t have client card
+3.Q: Does your restaurant take special orders or you can order only from menu?
+A: We can take special orders, if necessary
+4.Q: Are there different menus in different locations?
+A: Yes
+5.Q: Are the prices of same products different depending on location?
+A:  Yes, prices are different in different contries.
+6.Q: Should POS support online ordering?
+A: Yes
+7.Q: Should the POS allow to record the employees entering and exiting the system? (employee time tracking)
+A: Yes 
+8.Q: Do waiters get bonus for their work?
+A: Yes, they do
+9.Q: How do you calculate bonus?
+A: The bonus is based on the monthly income of the restaurant
+10.Q: Where do you order goods?
+A: From the warehouse
+11.Q: Should the POS be connected to the warehouse order system?
+A: No need
+12.Q: Would UI have to be touch-sensitive?
+A: Yes
+13.Q: Would you like to have categories for food or just for different drinks?
+A: We mostly offer drinks but we also need a category for snacks
+14.Q: How would you like drinks organized in UI?
+A: Bottled beer, draft beer, house special and also we would like to offer to the customers non-alcoholic drinks, shooters, mixed drinks, wine, siders, strong-drinks(vodka, whiskey etc.) 
+15.Q: Would you like to be able to add pictures to the items in the list?
+A: Yes, then the items are easier to recognize.
+16.Q: Would you like the item categories to be pre-made or would you like to make them by yourself?
+A: The basic categories should be pre-made but there should be possibility to add new categories
+17.Q: Does the POS system have different user groups?
+A:Yes for  waiters, head waiter, manager
+18.Q: Does the UI have to be different depending the user?
+A:Yes, the UI should present the relevant options to that logged-in persona according to these guideline
+19.Q:  Does the restaurant have discount for emolyees?
+A:Yes, they can get -10% discount.
+20.Q:Do you have annual discount events like company’s anniversary?
+A:Yes, our company’s anniversay is on 24’th september, all customers have -10% discount on that day.
+
+
+REQUIREMENTS
+
+1.Waiter shall be able to enter orders
+2.Waiter shall be able to track orders.
+3.Waiter shall be able to perform billing and accept payments.
+4.Waiter shall be able to leave the bill open
+5.Waiter shall be able to hand the bill over to other waiters
+6.Waiter shall be able to split the bill if the customer wishes so 
+7.Waiter shall be able to increase the limit of the customers bill if the client uses accepted credit card
+8.Waiter shall be able to enter bookings
+9.Waiters shall be able to delete bookings
+10.It(POS) shall show the booked tables to the waiters
+11.Head waiter shall be able to record cash registers initial and end states.
+12.Head waiter shall be able to add goods to the system
+13.Head waiter shall be able to remove goods from the system
+14.Head waiter shall be able to keep track of employees working schedule
+15.Head waiter shall be able to change waiters bills
+16.Head waiter shall be able to revoke waiters bills.
+17.Head waiter shall be able to review logs of the sales for making reports
+18.Waiter shall be able to send the bill to the client’s e-mail.
+19.Restaurant manager shall be able to calculate bonuses for waiters based on the monthly income of the restaurant.
+20.Restaurant manager shall be able to see which products are out of stock.
+21.Waiters shall be able to enter new gift cards
+22.It shall accept gift cards as form of payment
+23.Waiters shall be able to add new client cards
+24.Waiters shall be able to change regular clients’ information
+25.Waiters shall be able to change regular clients’ advertisement preferences
+26.System should have the help option where employees can ask questions about the system
+27.Waiter shall be able to get reminders to ask for ID
+28.The POS system should support multiple stores
+29.The POS system has to be secured
+30.It shall be possible to send advertisements to the regular patrons (guests who regularly come to the restaurant).
+31.Company administration shall be able to get different reports for each particular restaurant and arbitrary groups of restaurants.
+32.It(POS) should be able to take the dicount(-5% or -10%) from the bill if the customer has client card.
+33.The data shall be stored on the hard drive of the POS system computer.
+34.The POS system shall support online ordering
+35.It shall be able to enter special orders
+36.It shall contain different menus in different countries
+37.It shall contain price listing
+38.It shall contain employee information
+39.Head waiter shall be able to change employees information
+40.The POS system shall be able to show pictures of the items
+41.Head waiter shall be able to edit pictures
+42.It shall be able to categorise food and drinks
+43.There shall be basic categories and also the categories should be editable
+44.In the POS system should have different user groups to waiters, head waiter and manager
+45.There shall be tutorials when the user first logs in
+46.It shall be possible to search itmes by keyword
+47.It shall be able to send an advertisement to the client’s e-mail or phone
+48.It shall be able to send birthday wishes to customers and employees
+49.System should be able to calculate discount
+50.The POS system should allow users to use the system at the same time
+
+
+USABILITY
+
+1.The UI shall be touch-sensitive
+2.The POS system should support dexterity 
+3.There should be different themes in order to make system more user-friedly
+4.The UI has to be different according to user groups
+5.The system should have night mode
+
+
+PERFORMANCE
+
+1.Logging in and out of the system shouldn’t take longer than 1 second
+2.System should be logical and easy to follow
+3.Transactions should be (almost) instant 
+4.The system should take the hardware into accout 
+5.The POS system should give constant feedback about transactions
