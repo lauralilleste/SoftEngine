@@ -27,7 +27,7 @@ public class IntroUI extends JFrame {
 		Properties prop2 = new Properties();
 		// size & location
 		int width = 600;
-		int height = 400;
+		int height = 200;
 		setSize(width, height);
 		setTitle("Intro");
 
@@ -74,15 +74,15 @@ public class IntroUI extends JFrame {
 		}
 
 		JPanel panel = new JPanel();
-		JLabel team_name = new JLabel(prop1.getProperty("team_name"));
-		JLabel team_email = new JLabel(prop1.getProperty("team_email"));
-		JLabel team_leader = new JLabel(prop1.getProperty("team_leader"));
+		JLabel team_name = new JLabel("Team name: "+prop1.getProperty("team_name"));
+		JLabel team_email = new JLabel("Team email: "+prop1.getProperty("team_email"));
+		JLabel team_leader = new JLabel("Team leader: "+prop1.getProperty("team_leader"));
 		JLabel team_members = new JLabel("Team members: "
 				+ prop1.getProperty("team_member1") + ", "
 				+ prop1.getProperty("team_member2") + ", "
 				+ prop1.getProperty("team_member3"));
 		JLabel version = new JLabel("Versioon "
-				+ prop2.getProperty("revision")+"."+prop2.getProperty("minor")+"."+prop2.getProperty("major"));
+				+ prop2.getProperty("build.major.number")+"."+prop2.getProperty("build.minor.number")+"."+prop2.getProperty("build.revision.number"));
 		panel.add(team_name);
 		panel.add(team_leader);
 		panel.add(team_email);
