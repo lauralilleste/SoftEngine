@@ -54,6 +54,23 @@
 
 	</target>
 
+	<target name="dist" depends="build">
+			<mkdir dir="${dist.dir}"/>
+		<propertyfile file="${version.properties}">
+						<entry key="build.revision.number" type="int" operation="+" value="1" pattern="00" />
+					</propertyfile>
+
+					<property file="${version.properties}"/>
+
+					<propertyfile file="${version.properties}">
+						<entry key="build.number" value="${build.major.number}.${build.minor.number}.${build.revision.number}" />
+					</propertyfile>
+				<manifest>
+					<attribute name="Main-Class" 
+						value="ee.ut.math.tvt.SoftEngine.Intro"/>
+				</manifest>
+			
+	</target>
 	<!-- Build internal documentation -->
 	<target name="javadoc" description="Build internal documentation">
 		<mkdir dir="${doc.dir}"/>
