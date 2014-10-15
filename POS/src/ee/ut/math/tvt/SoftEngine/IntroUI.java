@@ -2,7 +2,6 @@ package ee.ut.math.tvt.SoftEngine;
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.border.*;
-
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -17,10 +16,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Properties;
-
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -28,28 +25,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
-
-
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-
-
-
-
-
-
-
-
-
-
-
 import org.apache.log4j.Logger;
-
 import com.jgoodies.looks.MicroLayout;
 import com.jgoodies.looks.windows.WindowsLookAndFeel;
 import com.sun.xml.internal.ws.api.server.Container;
-
 import ee.ut.math.tvt.SoftEngine.IntroUI;
 
 public class IntroUI extends JFrame {
