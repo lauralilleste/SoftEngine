@@ -1,0 +1,5 @@
+#Thu, 16 Oct 2014 13:02:31 +0300
+
+build.revision.number=01
+
+build.number=${build.major.number}.${build.minor.number}.01
