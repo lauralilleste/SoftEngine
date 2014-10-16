@@ -14,6 +14,7 @@
 
 	<!-- Definitions of classpath variants used for different tasks -->
 
+	
 	<path id="compile.classpath">
 		<fileset dir="lib">
 			<include name="*.jar"/>
