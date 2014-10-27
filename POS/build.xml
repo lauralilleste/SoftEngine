@@ -71,10 +71,22 @@
 					<propertyfile file="${version.properties}">
 						<entry key="build.number" value="${build.major.number}.${build.minor.number}.${build.revision.number}" />
 					</propertyfile>
+		
+		<jar destfile="${dist.dir}/${SoftEngine}.jar">
+						<fileset dir="${build.classes.dir}"/>
+						<fileset dir="${basedir}" 
+							includes="log4j2.xml"/>
+						<fileset dir="${basedir}" 
+							includes="**.properties"/>
+						<zipgroupfileset dir="lib">
+							<include name="*.jar"/>
+						</zipgroupfileset>
 				<manifest>
 					<attribute name="Main-Class" 
 						value="ee.ut.math.tvt.SoftEngine.Intro"/>
+					
 				</manifest>
+			</jar>
 			
 	</target>
 	<!-- Build internal documentation -->
