@@ -27,7 +27,6 @@ public static void main(String[] args) {
 		ConsoleUI cui = new ConsoleUI(domainController);
 		cui.run();
 	} else {
-
 		IntroUI introUI = new IntroUI();
 		introUI.setVisible(true);
 		introUI.setAlwaysOnTop(true);
@@ -43,4 +42,5 @@ public static void main(String[] args) {
 		}
 		introUI.setVisible(false);
 	}
-}}
+}
+}
