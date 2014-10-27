@@ -43,7 +43,7 @@ public class IntroUI extends JFrame {
 		
         
 		setContentPane(contentPane);
-        //final java.awt.Container contentPane = jFrame.getContentPane();
+      
 		
         contentPane.setLayout(new GridLayout(3, 1));
      
@@ -66,7 +66,7 @@ public class IntroUI extends JFrame {
 			UIManager.setLookAndFeel(new WindowsLookAndFeel());
 
 		} catch (UnsupportedLookAndFeelException e1) {
-			// log.warn(e1.getMessage());
+			log.warn(e1.getMessage());
 		}
 
 		// Application
