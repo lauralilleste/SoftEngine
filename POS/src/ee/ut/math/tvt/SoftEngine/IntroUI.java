@@ -31,7 +31,7 @@ public class IntroUI extends JFrame {
 	
 	private final Logger log = Logger.getLogger(IntroUI.class);
 	public IntroUI() {
-		log.info("Intro started");
+		log.info("Intro started!");
 		this.Frame();
 	}
 	Properties prop3 = new Properties();
