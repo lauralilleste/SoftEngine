@@ -1,5 +1,0 @@
-#Thu, 16 Oct 2014 13:37:32 +0300
-
-build.revision.number=02
-
-build.number=${build.major.number}.${build.minor.number}.02

@@ -59,24 +59,31 @@
 		</java>
 	</target>
 
-
 	<target name="dist" depends="build">
 			<mkdir dir="${dist.dir}"/>
-		<propertyfile file="${version.properties}">
-						<entry key="build.revision.number" type="int" operation="+" value="1" pattern="00" />
-					</propertyfile>
-
-					<property file="${version.properties}"/>
-
-					<propertyfile file="${version.properties}">
-						<entry key="build.number" value="${build.major.number}.${build.minor.number}.${build.revision.number}" />
-					</propertyfile>
+			<propertyfile file="resources/version.properties">
+				<entry key="build.revision.number" type="int" default="0" operation="+" pattern="00"/>
+			</propertyfile>
+			<property file="resources/version.properties"/>
+			<propertyfile file="resources/version.properties">
+				<entry key="build.number" value="${build.major.number}.${build.minor.number}.${build.revision.number}"/>
+			</propertyfile>
+			<jar destfile="${dist.dir}/${SoftEngine}.jar">
+				<fileset dir="${build.classes.dir}"/>
+				<fileset dir="${basedir}" 
+					includes="log4j2.xml"/>
+				<fileset dir="${basedir}" 
+					includes="**.properties"/>
+				<zipgroupfileset dir="lib">
+					<include name="*.jar"/>
+				</zipgroupfileset>
+				
 				<manifest>
-					<attribute name="Main-Class" 
-						value="ee.ut.math.tvt.SoftEngine.Intro"/>
+					<attribute name="Intro" value="${Intro.class}"/>
 				</manifest>
-			
-	</target>
+			</jar>
+		</target>
+	
 	<!-- Build internal documentation -->
 	<target name="javadoc" description="Build internal documentation">
 		<mkdir dir="${doc.dir}"/>
