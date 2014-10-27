@@ -25,26 +25,18 @@ import ee.ut.math.tvt.SoftEngine.IntroUI;
 
 public class IntroUI extends JFrame {
 	private static final long serialVersionUID = 1L;
-	
-	private final JPanel contentPane = new JPanel();
-
-	
 	private final Logger log = Logger.getLogger(IntroUI.class);
 	public IntroUI() {
-		log.info("Intro started!");
+		log.info("Intro started");
 		this.Frame();
 	}
 	Properties prop3 = new Properties();
 	private void Frame() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
-		setBounds((screen.width - WIDTH) / 5,(screen.height - HEIGHT) / 5, 800, 500);
-		setResizable(false);
 		
+        final JFrame jFrame = new JFrame();
         
-		setContentPane(contentPane);
-        //final java.awt.Container contentPane = jFrame.getContentPane();
-		
+        
+        final java.awt.Container contentPane = jFrame.getContentPane();
         contentPane.setLayout(new GridLayout(3, 1));
      
        
@@ -53,7 +45,14 @@ public class IntroUI extends JFrame {
 		Properties prop1 = new Properties();
 		Properties prop2 = new Properties();
 		
-		
+		// size & location
+		int width = 800;
+		int height = 500;
+		jFrame.setSize(width, height);
+		jFrame.setTitle("Intro");
+
+		Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+		jFrame.setLocation((screen.width - width) / 2, (screen.height - height) / 2);
 
 		addWindowListener(new WindowAdapter() {
 			@Override
@@ -138,12 +137,16 @@ public class IntroUI extends JFrame {
 				e1.printStackTrace();
 			}
 		
+
+		
+		
+		
 		contentPane.add(panel);
 		  JLabel version = new JLabel("Versioon "
 					+ prop2.getProperty("build.major.number")+"."+prop2.getProperty("build.minor.number")+"."+prop2.getProperty("build.revision.number"),JLabel.CENTER);
 			 contentPane.add(version);
 	     
-		
+		jFrame.setVisible(true);
 	}
 
 }

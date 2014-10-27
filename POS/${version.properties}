@@ -1,5 +1,0 @@
-#Mon, 27 Oct 2014 18:05:05 +0200
-
-build.revision.number=04
-
-build.number=${build.major.number}.${build.minor.number}.04

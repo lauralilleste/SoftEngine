@@ -5,7 +5,6 @@ import java.io.IOException;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 
-import ee.ut.math.tvt.SoftEngine.IntroUI;
 import ee.ut.math.tvt.SoftEngine.Intro;
 import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
 import ee.ut.math.tvt.salessystem.domain.controller.impl.SalesDomainControllerImpl;
@@ -28,6 +27,7 @@ public static void main(String[] args) {
 		ConsoleUI cui = new ConsoleUI(domainController);
 		cui.run();
 	} else {
+
 		IntroUI introUI = new IntroUI();
 		introUI.setVisible(true);
 		introUI.setAlwaysOnTop(true);
@@ -43,5 +43,4 @@ public static void main(String[] args) {
 		}
 		introUI.setVisible(false);
 	}
-}
-}
+}}
