@@ -53,6 +53,12 @@
 		</javac>
 
 	</target>
+	<target name="runc" depends="build" description="Run the application (console)">
+		<java classname="ee.ut.math.tvt.SoftEngine.Intro" classpathref="test.classpath" fork="yes">
+			<arg value="console" />
+		</java>
+	</target>
+
 
 	<target name="dist" depends="build">
 			<mkdir dir="${dist.dir}"/>
