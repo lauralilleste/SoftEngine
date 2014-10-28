@@ -3,6 +3,7 @@ package ee.ut.math.tvt.salessystem.ui.model;
 import org.apache.log4j.Logger;
 
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
+import ee.ut.math.tvt.salessystem.ui.SalesSystemUI;
 
 /**
  * Purchase history details model.
@@ -13,7 +14,7 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
 	private static final Logger log = Logger.getLogger(PurchaseInfoTableModel.class);
 	
 	public PurchaseInfoTableModel() {
-		super(new String[] { "Id", "Name", "Price", "Quantity", "Sum"});
+		super(new String[] { "Id", "Name", "Price", "Quantity","Sum"});
 	}
 
 	@Override
@@ -51,6 +52,13 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
 		}
 
 		return buffer.toString();
+	}
+	public String getPurchaseSum(){
+		Double purchaseSum = 0.0;
+		for (final SoldItem item:rows){
+			purchaseSum += item.getSum();
+		}
+		return purchaseSum.toString();
 	}
 	
     /**

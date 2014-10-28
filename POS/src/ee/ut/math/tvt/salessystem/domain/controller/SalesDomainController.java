@@ -21,22 +21,20 @@ public interface SalesDomainController {
     public List<StockItem> loadWarehouseState();
 
     // business processes
-
-
     /**
      * Initiate new business transaction - purchase of the goods.
      * 
      * @throws VerificationFailedException
      */
     public void startNewPurchase() throws VerificationFailedException;
-    /*
+
+    /**
      * Rollback business transaction - purchase of goods.
      * 
      * @throws VerificationFailedException
      */
     public void cancelCurrentPurchase() throws VerificationFailedException;
 
-    /**
     /**
      * Commit business transaction - purchsae of goods.
      * 
@@ -46,4 +44,6 @@ public interface SalesDomainController {
      */
     public void submitCurrentPurchase(List<SoldItem> goods)
             throws VerificationFailedException;
+
+    
 }
