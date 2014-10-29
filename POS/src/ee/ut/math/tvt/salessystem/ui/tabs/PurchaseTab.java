@@ -191,6 +191,7 @@ private void ConfirmationBox(){
 		continuePurchase();
 		return;
 	}
+	
 	confPanel.add(new JLabel("Sum: "+ model.getCurrentPurchaseTableModel().getPurchaseSum()));
 	confPanel.add(new JLabel("Payment amount: "+ pm),"newline");
 	confPanel.add(new JLabel("Return: " + rm),"newline");
@@ -198,6 +199,7 @@ private void ConfirmationBox(){
 	cancelP = createCancelPButton();
 	confPanel.add(makeP,"newline");
 	confPanel.add(cancelP);
+	confFrame.add(confPanel);
 	confFrame.setVisible(true);
 }
 
