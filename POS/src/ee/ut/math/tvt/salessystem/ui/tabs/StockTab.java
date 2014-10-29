@@ -116,12 +116,13 @@ public class StockTab {
   		
   		return b;
   }
+  
     // Creates the "Cancel" button
     private JButton createCancelButton() {
       JButton b = new JButton("Cancel");
       b.addActionListener(new ActionListener() {
         public void actionPerformed(ActionEvent e) {
-          cancelPurchaseButtonClicked();
+        	cancelPurchaseButtonClicked();
        
         }
       });
@@ -164,7 +165,7 @@ public class StockTab {
   }
   protected void cancelPurchaseButtonClicked() {
 	    try {
-	    	log.info("Cancelled");
+	    	addItemFrame.dispose();
 	    	
 	    } catch (Exception e1) {
 	      log.error(e1.getMessage());
