@@ -156,6 +156,7 @@ public class StockTab {
 		  price = Double.parseDouble(PriceField.getText());
 		  quantity = Integer.parseInt(QuantityField.getText());
 		  model.getWarehouseTableModel().addItem(new StockItem(id, name, desc, price, quantity));
+		  addItemFrame.dispose();
 		  
 	  }
 	  catch(Exception e){
