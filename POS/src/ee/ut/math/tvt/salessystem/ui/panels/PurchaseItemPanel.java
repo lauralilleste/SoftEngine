@@ -267,7 +267,7 @@ public class PurchaseItemPanel extends JPanel {
 		if (item.getQuantity() < quantity) {
 			JOptionPane.showMessageDialog(
 				new JFrame(),
-				item.getName() + "\" amount exceeds item quantity in the Warehouse",
+				"\" "+item.getName() + "\" amount exceeds item quantity in the Warehouse",
 				"Warning",
 				JOptionPane.WARNING_MESSAGE);
 			return false;
