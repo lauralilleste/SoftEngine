@@ -142,7 +142,7 @@ public class PurchaseTab {
   private JButton createMakePButton(){
 	  JButton b = new JButton("Make purchase"); 
 	  b.addActionListener(new ActionListener() {
-	      public void actionPerformed(ActionEvent e) {
+	      public void actionPerformed(ActionEvent arg0) {
 	        makePButtonClicked();
 	      }
 	    });
