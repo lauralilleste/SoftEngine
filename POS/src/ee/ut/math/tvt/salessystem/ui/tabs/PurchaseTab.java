@@ -249,12 +249,14 @@ private void ConfirmationBox(){
   
   protected void makePButtonClicked(){
 	  try{
+		  
 		  log.debug("Current basket: "+model.getCurrentPurchaseTableModel());
 		  domainController.submitCurrentPurchase(model.getCurrentPurchaseTableModel().getTableRows());
 		  endSale();
 		  savePurchase();
 		  log.info("Sale completed");
 		  model.getCurrentPurchaseTableModel().clear();
+		  
 	  } catch(VerificationFailedException e){
 		  log.error(e.getMessage());
 	  }
@@ -289,6 +291,7 @@ private void ConfirmationBox(){
 
   // switch UI to the state that allows to initiate new purchase
   private void endSale() {
+	  
     purchasePane.reset();
     confFrame.dispose();
     cancelPurchase.setEnabled(false);
