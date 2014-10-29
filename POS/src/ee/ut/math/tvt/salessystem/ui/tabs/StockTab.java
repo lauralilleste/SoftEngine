@@ -105,6 +105,7 @@ public class StockTab {
   			}
   			
   		});
+  		
   		return b;
   }
   

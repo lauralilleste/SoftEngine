@@ -29,7 +29,7 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
 		case 3:
 			return item.getQuantity();
 		case 4:
-			return item.getSum();
+			return item.getQuantity()*item.getPrice();
 		}
 		throw new IllegalArgumentException("Column index out of range");
 	}
