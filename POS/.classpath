@@ -6,6 +6,6 @@
 	<classpathentry exported="true" kind="lib" path="/lab3-demo/lib/jgoodies-common-1.4.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="/lab3-demo/lib/jgoodies-looks-2.5.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="/lab3-demo/lib/log4j-1.2.17.jar"/>
-	<classpathentry kind="lib" path="C:/Users/kerlikuningas/Documents/Tarkvaratehnika/SoftEngine/POS/lib/miglayout-4.0.jar"/>
+	<classpathentry kind="lib" path="lib/miglayout-4.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
