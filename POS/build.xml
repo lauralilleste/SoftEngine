@@ -102,6 +102,63 @@
 	<target name="clean" description="Clean up build system results">
 		<delete dir="${build.dir}"/>
 	</target>
+	<!-- Git -->
+	<macrodef name="git">
+		<attribute name="command" />
+		<attribute name="dir" default="" />
+		<element name="args" optional="true" />
+		
+		<sequential>
+			<echo message="git @{command}" />
+			<exec executable="git" dir="@{dir}">
+				<arg value="@{command}" />
+				<args/>
+			</exec>
+		</sequential>
+	</macrodef>
 
+	<target name="git_commit" description="Commits all changes to version git">
+		<input message="Commit message" addproperty="commit-message" />
+		<echo message="Commiting all changes with message ${commit-message}" />
+		
+		<git command="add">
+			<args>
+				<arg value="-A" />
+			</args>
+		</git>
+		<git command="commit">
+			<args>
+				<arg value="-m ${commit-message}" />
+			</args>
+		</git>
+		<git command="push" />
+			<args>
+						<arg value="https://${username}:${password}@github.com/lauralilleste/SoftEngine.git" />
+						
+				</args>
+	</target>
+
+
+	<target name="git_tag" description="New tag">
+		<input message="Tag name" addproperty="tag-name" />
+		<input message="Comment" addproperty="tag-comment" />
+		<echo message="Tag ${tag-name} made" />
+
+		<git command="tag">
+			<args>
+				<arg value="-a" />
+				<arg value="${tag-name}" />
+				<arg value="-m" />
+				<arg value="${tag-comment}" />
+			</args>
+		</git>
+		<git command="push">
+			<args>
+				<arg value="--tags" />
+				<arg value="https://${username}:${password}@github.com/lauralilleste/SoftEngine.git" />
+				
+			</args>
+		</git>
+	</target>
 </project>
 
