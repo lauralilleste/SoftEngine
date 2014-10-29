@@ -82,7 +82,7 @@ public class HistoryTab {
 		
 		 JTableHeader header = table.getTableHeader(); 
 		 header.setReorderingAllowed(false);
-		 JScrollPane scrollPane = new JScrollPane();
+		 JScrollPane scrollPane = new JScrollPane(table);
 		 GridBagConstraints gc = new GridBagConstraints();
     	 GridBagLayout gb = new GridBagLayout();
     	 gc.fill = GridBagConstraints.BOTH;
