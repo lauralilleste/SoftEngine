@@ -58,7 +58,7 @@ public class HistoryTab {
     }
     
     // history table
-    private JPanel drawHistoryMainPane(){
+    private Component drawHistoryMainPane(){
 		 final JPanel panel = new JPanel();
 		 final JTable table = new JTable(model.getHistoryTableModel());
 		 table.addMouseListener(new MouseAdapter (){
@@ -79,9 +79,10 @@ public class HistoryTab {
 			 }
 		 });
 		 
-		 JScrollPane scrollPane = new JScrollPane();
+		
 		 JTableHeader header = table.getTableHeader(); 
 		 header.setReorderingAllowed(false);
+		 JScrollPane scrollPane = new JScrollPane();
 		 GridBagConstraints gc = new GridBagConstraints();
     	 GridBagLayout gb = new GridBagLayout();
     	 gc.fill = GridBagConstraints.BOTH;
@@ -96,12 +97,12 @@ public class HistoryTab {
     }
     private Component drawDetailedHistoryPane(List<SoldItem> items){
     	 final JPanel panel = new JPanel();
-    	 DetailedHistoryTableModel dhtm=model.getDetailedHistoryTableModel();
+    	 DetailedHistoryTableModel dhtm= model.getDetailedHistoryTable();
     	 dhtm.addItems(items);
     	 final JTable table = new JTable(dhtm);
     	 JTableHeader header = table.getTableHeader(); 
     	 header.setReorderingAllowed(false);
-    	 JScrollPane scrollPane = new JScrollPane();
+    	 JScrollPane scrollPane = new JScrollPane(table);
     	 GridBagConstraints gc = new GridBagConstraints();
     	 GridBagLayout gb = new GridBagLayout();
     	 gc.fill = GridBagConstraints.BOTH;
