@@ -10,7 +10,7 @@ import ee.ut.math.tvt.salessystem.domain.data.Order;
 public class HistoryTableModel extends SalesSystemTableModel<Order> {
 	private static final long serialVersionUID = 1L;
 
-	private static final Logger log = Logger.getLogger(PurchaseInfoTableModel.class);
+	private static final Logger log = Logger.getLogger(HistoryTableModel.class);
 	
 	private final List<Order> orders= new ArrayList<>();
 	

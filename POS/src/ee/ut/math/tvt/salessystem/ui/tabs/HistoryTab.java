@@ -22,6 +22,7 @@ import org.apache.log4j.Logger;
 import ee.ut.math.tvt.salessystem.domain.data.Order;
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 import ee.ut.math.tvt.salessystem.ui.model.DetailedHistoryTableModel;
+import ee.ut.math.tvt.salessystem.ui.model.PurchaseInfoTableModel;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
 
 /**
@@ -30,7 +31,7 @@ import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
  */
 public class HistoryTab {
     
-    private static final Logger log = Logger.getLogger(PurchaseTab.class);
+    private static final Logger log = Logger.getLogger(PurchaseInfoTableModel.class);
     private final SalesSystemModel model;
     
 
