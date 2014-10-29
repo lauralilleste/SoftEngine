@@ -24,12 +24,14 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.JTableHeader;
 
+import org.apache.log4j.Logger;
+
 
 public class StockTab {
 
   private JButton addItem;
   private JButton confirm;
-
+  private JButton cancel;
   private JFrame addItemFrame;
   private JPanel addItemPanel;
   private SalesSystemModel model;
@@ -37,6 +39,8 @@ public class StockTab {
   private JTextField NameField;
   private JTextField PriceField;
   private JTextField QuantityField;
+  
+  private static final Logger log = Logger.getLogger(PurchaseTab.class);
 
   public StockTab(SalesSystemModel model) {
     this.model = model;
@@ -112,6 +116,18 @@ public class StockTab {
   		
   		return b;
   }
+    // Creates the "Cancel" button
+    private JButton createCancelButton() {
+      JButton b = new JButton("Cancel");
+      b.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+          cancelPurchaseButtonClicked();
+       
+        }
+      });
+
+      return b;
+    }
  
   
   // Event handler for the "add" button
@@ -146,6 +162,14 @@ public class StockTab {
 		  addItemFrame.dispose();
 	  }
   }
+  protected void cancelPurchaseButtonClicked() {
+	    try {
+	    	log.info("Cancelled");
+	    	
+	    } catch (Exception e1) {
+	      log.error(e1.getMessage());
+	    }
+	  }
 
   //Add new items
   private void addItemBox(){
@@ -179,7 +203,9 @@ public class StockTab {
 	  addItemPanel.add(QuantityField);
 	  
 	  confirm = createConfirmButton();
+	  cancel = createCancelButton();
 	  addItemPanel.add(confirm,"newline");
+	  addItemPanel.add(cancel);
 	  
 	  addItemFrame.setVisible(true);
 	  

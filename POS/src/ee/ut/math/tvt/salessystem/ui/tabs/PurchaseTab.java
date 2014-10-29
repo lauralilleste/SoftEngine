@@ -48,6 +48,8 @@ public class PurchaseTab {
 
   private JButton makeP;
   
+  private JButton cancelP;
+  
   private PurchaseItemPanel purchasePane;
 
   private SalesSystemModel model;
@@ -146,6 +148,15 @@ public class PurchaseTab {
 	    });
 	    return b;
   }
+  //Creates the "Cancel purchase" button
+  private JButton createCancelPButton(){
+	  JButton b = new JButton("Cancel");
+	  b.addActionListener(new ActionListener(){
+		  public void actionPerformed(ActionEvent e){
+			  cancelPButtonClicked();
+		  }
+	  }); return b;
+  }
   
   // Creates the "Cancel" button
   private JButton createCancelButton() {
@@ -184,7 +195,9 @@ private void ConfirmationBox(){
 	confPanel.add(new JLabel("Payment amount: "+ pm),"newline");
 	confPanel.add(new JLabel("Return: " + rm),"newline");
 	makeP =  createMakePButton();
+	cancelP = createCancelPButton();
 	confPanel.add(makeP,"newline");
+	confPanel.add(cancelP);
 	confFrame.setVisible(true);
 }
 
@@ -243,6 +256,10 @@ private void ConfirmationBox(){
 	  } catch(VerificationFailedException e){
 		  log.error(e.getMessage());
 	  }
+  }
+  protected void cancelPButtonClicked(){
+	  log.info("Return");
+	  continuePurchase();
   }
   
   
