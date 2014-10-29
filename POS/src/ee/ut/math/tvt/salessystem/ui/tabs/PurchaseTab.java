@@ -1,19 +1,34 @@
 package ee.ut.math.tvt.salessystem.ui.tabs;
 
+import ee.ut.math.tvt.salessystem.domain.data.Order;
 import ee.ut.math.tvt.salessystem.domain.exception.VerificationFailedException;
 import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
 import ee.ut.math.tvt.salessystem.ui.panels.PurchaseItemPanel;
+
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+
+import net.miginfocom.swing.MigLayout;
+
 import org.apache.log4j.Logger;
+
+import java.text.DateFormat;
 
 /**
  * Encapsulates everything that has to do with the purchase tab (the tab
@@ -31,9 +46,15 @@ public class PurchaseTab {
 
   private JButton cancelPurchase;
 
+  private JButton makeP;
+  
   private PurchaseItemPanel purchasePane;
 
   private SalesSystemModel model;
+  
+  private JPanel confPanel;
+  
+  private JFrame confFrame;
 
 
   public PurchaseTab(SalesDomainController controller,
@@ -114,8 +135,18 @@ public class PurchaseTab {
 
     return b;
   }
-
-
+  
+//Creates the "Make purchase" button
+  private JButton createMakePButton(){
+	  JButton b = new JButton("Make purchase"); 
+	  b.addActionListener(new ActionListener() {
+	      public void actionPerformed(ActionEvent e) {
+	        makePButtonClicked();
+	      }
+	    });
+	    return b;
+  }
+  
   // Creates the "Cancel" button
   private JButton createCancelButton() {
     JButton b = new JButton("Cancel");
@@ -129,7 +160,33 @@ public class PurchaseTab {
     return b;
   }
 
-
+private void ConfirmationBox(){
+	showConfBox();
+	confPanel = new JPanel(new MigLayout("nogrid"));
+	confFrame = new JFrame("Confirm");
+	confFrame.setSize(new Dimension(350,180));
+	confFrame.setLocationRelativeTo(null);
+	confFrame.setVisible(false);
+	confFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	
+	//asking payment amount
+	String pm = (String) JOptionPane.showInputDialog(confFrame,"Sum: "
+	+model.getCurrentPurchaseTableModel().getPurchaseSum(),"",
+	JOptionPane.PLAIN_MESSAGE, null, null, "Payment amount");
+	Double rm = Double.valueOf(new DecimalFormat("0.00").format(
+			Double.parseDouble(pm)-Double.parseDouble(model.getCurrentPurchaseTableModel().getPurchaseSum())));
+	if(rm<0){
+		JOptionPane.showMessageDialog(null, "Entered amount is too small","Warning",JOptionPane.WARNING_MESSAGE);
+		continuePurchase();
+		return;
+	}
+	confPanel.add(new JLabel("Sum: "+ model.getCurrentPurchaseTableModel().getPurchaseSum()));
+	confPanel.add(new JLabel("Payment amount: "+ pm),"newline");
+	confPanel.add(new JLabel("Return: " + rm),"newline");
+	makeP =  createMakePButton();
+	confPanel.add(makeP,"newline");
+	confFrame.setVisible(true);
+}
 
 
 
@@ -167,17 +224,35 @@ public class PurchaseTab {
   protected void submitPurchaseButtonClicked() {
     log.info("Sale complete");
     try {
-      log.debug("Contents of the current basket:\n" + model.getCurrentPurchaseTableModel());
-      domainController.submitCurrentPurchase(
-          model.getCurrentPurchaseTableModel().getTableRows()
-      );
-      endSale();
-      model.getCurrentPurchaseTableModel().clear();
-    } catch (VerificationFailedException e1) {
-      log.error(e1.getMessage());
+      ConfirmationBox();
+      
+    } catch (Exception e1) {
+      JOptionPane.showMessageDialog(null,"Incorrect input","Warning",JOptionPane.WARNING_MESSAGE);
+      continuePurchase();
     }
   }
-
+  
+  protected void makePButtonClicked(){
+	  try{
+		  log.debug("Current basket: "+model.getCurrentPurchaseTableModel());
+		  domainController.submitCurrentPurchase(model.getCurrentPurchaseTableModel().getTableRows());
+		  endSale();
+		  savePurchase();
+		  log.info("Sale completed");
+		  model.getCurrentPurchaseTableModel().clear();
+	  } catch(VerificationFailedException e){
+		  log.error(e.getMessage());
+	  }
+  }
+  
+  
+  protected void savePurchase(){
+	  Order order = new Order(model.getCurrentPurchaseTableModel().getTableRows(),
+			  ((DateFormat)new SimpleDateFormat("yyyy/MM/dd")).format(Calendar.getInstance().getTime()),
+			  ((DateFormat)new SimpleDateFormat("HH:mm:ss")).format(Calendar.getInstance().getTime()));
+	  model.getHistoryTableModel().AddOrder(order);
+	  model.getWarehouseTableModel().ItemsQuantity(order.getSoldItem());
+  }
 
 
   /* === Helper methods that bring the whole purchase-tab to a certain state
@@ -187,7 +262,6 @@ public class PurchaseTab {
   // switch UI to the state that allows to proceed with the purchase
   private void startNewSale() {
     purchasePane.reset();
-
     purchasePane.setEnabled(true);
     submitPurchase.setEnabled(true);
     cancelPurchase.setEnabled(true);
@@ -197,13 +271,27 @@ public class PurchaseTab {
   // switch UI to the state that allows to initiate new purchase
   private void endSale() {
     purchasePane.reset();
-
+    confFrame.dispose();
     cancelPurchase.setEnabled(false);
     submitPurchase.setEnabled(false);
     newPurchase.setEnabled(true);
     purchasePane.setEnabled(false);
   }
-
+  
+  //switch UI to the state that allows to continue 
+  private void continuePurchase(){
+	  confFrame.dispose();
+	  purchasePane.setEnabled(true);
+	  submitPurchase.setEnabled(true);
+	  cancelPurchase.setEnabled(true);
+	  newPurchase.setEnabled(false);
+  }
+  private void showConfBox(){
+	  purchasePane.setEnabled(false);
+	  submitPurchase.setEnabled(false);
+	  cancelPurchase.setEnabled(false);
+	  newPurchase.setEnabled(false);
+  }
 
 
 
