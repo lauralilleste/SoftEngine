@@ -3,6 +3,7 @@ package ee.ut.math.tvt.salessystem.ui.panels;
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -11,10 +12,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.NoSuchElementException;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -170,8 +174,13 @@ public class PurchaseItemPanel extends JPanel {
             } catch (NumberFormatException ex) {
                 quantity = 1;
             }
-            model.getCurrentPurchaseTableModel()
-                .addItem(new SoldItem(stockItem, quantity));
+            SoldItem eItem = getExistingSoldItem(stockItem);
+			int quantityToCheck = eItem != null ? eItem.getQuantity() + quantity : quantity;
+
+			if (checkWareHouseInventory(stockItem, quantityToCheck)) {
+				model.getCurrentPurchaseTableModel().addItem(new SoldItem(stockItem, quantity), eItem);
+			}
+           
         }
     }
 
@@ -243,5 +252,27 @@ public class PurchaseItemPanel extends JPanel {
 
         return gc;
     }
+    private SoldItem getExistingSoldItem(StockItem stockItem) {
+		try {
+			return model.getCurrentPurchaseTableModel().getItemById(stockItem.getId());
+		}
+		catch (NoSuchElementException e) {
+			return null;
+		}
+	}
+
+	private boolean checkWareHouseInventory(StockItem stockItem, int quantity) {
+		StockItem item = model.getWarehouseTableModel().getItemById(stockItem.getId());
+
+		if (item.getQuantity() < quantity) {
+			JOptionPane.showMessageDialog(
+				new JFrame(),
+				item.getName() + "\" amount exceeds item quantity in the Warehouse",
+				"Warning",
+				JOptionPane.WARNING_MESSAGE);
+			return false;
+		}
+		return true;
+	}
 
 }

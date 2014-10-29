@@ -13,6 +13,7 @@ public class SoldItem implements Cloneable, DisplayableItem {
     private String name;
     private Integer quantity;
     private double price;
+	private Double sum;
     
     public SoldItem(StockItem stockItem, int quantity) {
     	this.id=stockItem.getId();
@@ -59,7 +60,9 @@ public class SoldItem implements Cloneable, DisplayableItem {
     public double getSum() {
         return price * ((double) quantity);
     }
-
+    public void setSum(Double sum) {
+    	this.sum = sum;
+    }
     public StockItem getStockItem() {
         return stockItem;
     }

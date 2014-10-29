@@ -29,7 +29,7 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
 		case 3:
 			return item.getQuantity();
 		case 4:
-			return item.getPrice()*item.getQuantity();
+			return item.getSum();
 		}
 		throw new IllegalArgumentException("Column index out of range");
 	}
@@ -60,19 +60,29 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
 		}
 		return purchaseSum.toString();
 	}
-	
+	public String setPurchaseSum(){
+		Double purchaseSum = 0.0;
+		for (final SoldItem item:rows){
+			purchaseSum += item.getSum();
+		}
+		return purchaseSum.toString();
+	}
     /**
      * Add new StockItem to table.
      */
-    public void addItem(final SoldItem item) {
+    public void addItem(final SoldItem item, SoldItem eItem) {
         /**
          * XXX In case such stockItem already exists increase the quantity of the
          * existing stock.
          */
-    	
-    	 {
-        rows.add(item);
-        log.debug("Added " + item.getName() + " quantity of " + item.getQuantity());}
-        fireTableDataChanged();
-    }
+    	if (eItem != null) {
+			eItem.setQuantity(item.getQuantity() + eItem.getQuantity());
+			eItem.setSum(item.getSum() + eItem.getSum());
+			fireTableDataChanged();
+		} else {
+			rows.add(item);
+			log.debug("Added " + item.getName() + " quantity of " + item.getQuantity());
+		
+		fireTableDataChanged();}
+	}
 }
