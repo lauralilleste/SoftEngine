@@ -142,14 +142,14 @@
 	<target name="git_tag" description="New tag">
 		<input message="Tag name" addproperty="tag-name" />
 		<input message="Comment" addproperty="tag-comment" />
-		<echo message="Tag ${tag-name} made" />
+		<echo message="Tag homework ${tag-name} made" />
 
 		<git command="tag">
 			<args>
 				<arg value="-a" />
-				<arg value="${tag-name}" />
+				<arg value="homework_${tag-name}" />
 				<arg value="-m" />
-				<arg value="${tag-comment}" />
+				<arg value="Homework ${tag-name}" />
 			</args>
 		</git>
 		<git command="push">
