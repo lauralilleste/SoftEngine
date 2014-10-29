@@ -142,7 +142,7 @@ public class PurchaseTab {
   private JButton createMakePButton(){
 	  JButton b = new JButton("Make purchase"); 
 	  b.addActionListener(new ActionListener() {
-	      public void actionPerformed(ActionEvent arg0) {
+	      public void actionPerformed(ActionEvent e) {
 	        makePButtonClicked();
 	      }
 	    });
@@ -305,6 +305,7 @@ private void ConfirmationBox(){
 	  cancelPurchase.setEnabled(true);
 	  newPurchase.setEnabled(false);
   }
+  //switch UI to ths state that allows to show confirmation box
   private void showConfBox(){
 	  purchasePane.setEnabled(false);
 	  submitPurchase.setEnabled(false);
