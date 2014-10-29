@@ -130,6 +130,7 @@ public class PurchaseItemPanel extends JPanel {
 			warehouseItems.add(each.getId() + " - " + each.getName());
 		}
 		return warehouseItems.toArray(new String[warehouseItems.size()]);
+		
 	}
 
 	// Fill dialog with data from the "database".
