@@ -29,7 +29,7 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
 		case 3:
 			return item.getQuantity();
 		case 4:
-			return item.getSum();
+			return item.getPrice()*item.getQuantity();
 		}
 		throw new IllegalArgumentException("Column index out of range");
 	}
@@ -69,9 +69,10 @@ public class PurchaseInfoTableModel extends SalesSystemTableModel<SoldItem> {
          * XXX In case such stockItem already exists increase the quantity of the
          * existing stock.
          */
-        
+    	
+    	 {
         rows.add(item);
-        log.debug("Added " + item.getName() + " quantity of " + item.getQuantity());
+        log.debug("Added " + item.getName() + " quantity of " + item.getQuantity());}
         fireTableDataChanged();
     }
 }
