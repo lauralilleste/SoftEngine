@@ -1,6 +1,7 @@
 package ee.ut.math.tvt.salessystem.ui.tabs;
 
 import ee.ut.math.tvt.salessystem.domain.data.StockItem;
+import ee.ut.math.tvt.salessystem.domain.exception.VerificationFailedException;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
 import net.miginfocom.swing.MigLayout;
 
@@ -28,6 +29,7 @@ public class StockTab {
 
   private JButton addItem;
   private JButton confirm;
+
   private JFrame addItemFrame;
   private JPanel addItemPanel;
   private SalesSystemModel model;
@@ -79,6 +81,8 @@ public class StockTab {
     gc.gridwidth = GridBagConstraints.RELATIVE;
     gc.weightx = 1.0;
     panel.add(addItem, gc);
+    
+  
 
     panel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
     return panel;
@@ -108,6 +112,7 @@ public class StockTab {
   		
   		return b;
   }
+ 
   
   // Event handler for the "add" button
   protected void addItemButtonClicked(){
@@ -141,7 +146,7 @@ public class StockTab {
 		  addItemFrame.dispose();
 	  }
   }
-  
+
   //Add new items
   private void addItemBox(){
 	  addItemPanel = new JPanel(new MigLayout("nogrid"));

@@ -12,10 +12,10 @@ public class SalesSystemModel {
     private static final Logger log = Logger.getLogger(SalesSystemModel.class);
 
     // Warehouse model
-    private StockTableModel warehouseTableModel;
+    private final StockTableModel warehouseTableModel;
     
     // Current shopping cart model
-    private PurchaseInfoTableModel currentPurchaseTableModel;
+    private final PurchaseInfoTableModel currentPurchaseTableModel;
     
     // History Model
     private final HistoryTableModel historyTableModel;

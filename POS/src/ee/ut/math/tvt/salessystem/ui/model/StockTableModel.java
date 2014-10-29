@@ -60,6 +60,7 @@ public class StockTableModel extends SalesSystemTableModel<StockItem> {
 			StockItem item = getItemById(si.getId());
 			item.setQuantity(item.getQuantity()-si.getQuantity());
 			log.debug("Decreased quantity of "+ item.getName()+ " by " + si.getQuantity());
+			fireTableDataChanged();
 		}
 	}
 
@@ -67,8 +68,10 @@ public class StockTableModel extends SalesSystemTableModel<StockItem> {
 	public String toString() {
 		final StringBuffer buffer = new StringBuffer();
 
-		for (int i = 0; i < headers.length; i++)
+		for (int i = 0; i < headers.length; i++) {
 			buffer.append(headers[i] + "\t");
+		}
+			
 		buffer.append("\n");
 
 		for (final StockItem stockItem : rows) {
