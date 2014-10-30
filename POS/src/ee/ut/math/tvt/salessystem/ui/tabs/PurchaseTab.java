@@ -13,6 +13,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -245,6 +246,11 @@ private void ConfirmationBox(){
       JOptionPane.showMessageDialog(null,"Incorrect input","Warning",JOptionPane.WARNING_MESSAGE);
       continuePurchase();
     }
+  }
+  public void keyPressed(java.awt.event.KeyEvent evt) {
+	  if(evt.getKeyCode() == KeyEvent.VK_Q) {
+		 
+	   }
   }
   
   protected void makePButtonClicked(){
