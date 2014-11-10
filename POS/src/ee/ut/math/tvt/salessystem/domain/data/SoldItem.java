@@ -1,27 +1,58 @@
 package ee.ut.math.tvt.salessystem.domain.data;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+
 
 
 /**
  * Already bought StockItem. SoldItem duplicates name and price for preserving history. 
  */
+@Entity
+@Table(name = "SOLDITEM")
 public class SoldItem implements Cloneable, DisplayableItem {
-
+	
+	private static long ID=1;
+	
+	@Id
+	@Column(name="id")
     private Long id;
+	
+	@OneToOne
+	@JoinColumn(name="stockitem_id", nullable=true)
     private StockItem stockItem;
     
+	@Column(name = "NAME")
     private String name;
+	
+	@Column(name = "QUANTITY")
     private Integer quantity;
+	
+	@Column(name = "ITEMPRICE")
     private double price;
+	
+	@ManyToOne
+	@JoinColumn(name="order_id", nullable=true)
+	private Order order;
+	
 	private Double sum;
     
     public SoldItem(StockItem stockItem, int quantity) {
-    	this.id=stockItem.getId();
+    	this.id=ID;
         this.stockItem = stockItem;
         this.name = stockItem.getName();
         this.price = stockItem.getPrice();
         this.quantity = quantity;
-        
+        ID+=1;
+    }
+    
+    public SoldItem(){
+    	ID+=1;
     }
     
     
@@ -69,6 +100,14 @@ public class SoldItem implements Cloneable, DisplayableItem {
 
     public void setStockItem(StockItem stockItem) {
         this.stockItem = stockItem;
+    }
+    
+    public Order getOrder(){
+    	return order;
+    }
+    
+    public void setOrder(Order order){
+    	this.order=order;
     }
     
 }
