@@ -2,16 +2,16 @@ package ee.ut.math.tvt.salessystem.domain.data;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-<<<<<<< HEAD
+
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
-=======
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
->>>>>>> ebe536f7f0e9166387c05f521d58266bba6f90ac
+
 import javax.persistence.Table;
 
 
@@ -22,7 +22,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "SOLDITEM")
 public class SoldItem implements Cloneable, DisplayableItem {
-<<<<<<< HEAD
+
 	
 	private static long ID=1;
 	
@@ -48,31 +48,7 @@ public class SoldItem implements Cloneable, DisplayableItem {
 	private Order order;
 	
 	private Double sum;
-=======
 
-	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-	
-	@Column(name = "STOCKITEM")
-    private StockItem stockItem;
-    
-    @Column(name = "NAME")
-    private String name;
-
-    @Column(name = "PRICE")
-    private double price;
-    
-    @Column(name = "QUANTITY")
-    private int quantity;
-    
-    @Column(name = "DESCRIPTION")
-    private String description;
-    
-    @Column(name = "SUM")
-    private Double sum;
-	
->>>>>>> ebe536f7f0e9166387c05f521d58266bba6f90ac
     
     public SoldItem(StockItem stockItem, int quantity) {
     	this.id=ID;
