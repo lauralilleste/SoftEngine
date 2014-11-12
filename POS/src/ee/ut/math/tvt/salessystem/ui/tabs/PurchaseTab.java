@@ -1,6 +1,8 @@
 package ee.ut.math.tvt.salessystem.ui.tabs;
 
 import ee.ut.math.tvt.salessystem.domain.data.Order;
+import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
+import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 import ee.ut.math.tvt.salessystem.domain.exception.VerificationFailedException;
 import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
@@ -17,6 +19,7 @@ import java.awt.event.KeyEvent;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -273,13 +276,22 @@ private void ConfirmationBox(){
   }
   
   
-  protected void savePurchase(){
+  protected void savePurchase() throws VerificationFailedException{
 	  Order order = new Order(model.getCurrentPurchaseTableModel().getTableRows(),
 			  ((DateFormat)new SimpleDateFormat("yyyy/MM/dd")).format(Calendar.getInstance().getTime()),
 			  ((DateFormat)new SimpleDateFormat("HH:mm:ss")).format(Calendar.getInstance().getTime()));
 	  model.getHistoryTableModel().AddOrder(order);
-	  model.getWarehouseTableModel().ItemsQuantity(order.getSoldItem());
-  }
+
+	  //model.getWarehouseTableModel().ItemsQuantity(order.getSoldItem());
+	
+		List<SoldItem> soldItems = order.getSoldItem();
+		
+		for (SoldItem item : soldItems) {
+			item.setOrder(order);
+		}
+		domainController.submitCurrentPurchase(soldItems);
+	}
+  
 
 
   /* === Helper methods that bring the whole purchase-tab to a certain state
