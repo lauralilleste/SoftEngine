@@ -22,31 +22,18 @@ import ee.ut.math.tvt.salesystem.service.*;
  */
 public class SalesDomainControllerImpl implements SalesDomainController {
 	
-	private final Session session = HibernateUtil.currentSession();
-	
-	private static final Logger log = Logger.getLogger(SalesDomainControllerImpl.class);
-	
-	HibernateDataService service=new HibernateDataService();
-	
-	public void submitCurrentPurchase(List<SoldItem> goods) throws VerificationFailedException {
-
-		saveEntities(goods);
-	}
-	
-	//public List<Order> loadHistory() {
-		//List<Order> orders = session.createQuery("from Order").list();
-
-	//	for (Order order : orders) {
-		//	order.setSoldItems(session.createQuery("from SoldItem where order_id = " + order.getId()).list());
-	//	}
-	//	return orders;
-	//}
-
-	public void cancelCurrentPurchase() throws VerificationFailedException {				
-		// XXX - Cancel current purchase
-	}
 	public void endSession() {
-	    HibernateUtil.closeSession();
+		HibernateUtil.closeSession();
+	}
+
+	public void submitCurrentPurchase(List<SoldItem> goods)
+			throws VerificationFailedException {
+		// XXX - Submit current purchase
+
+	}
+
+	public void cancelCurrentPurchase() throws VerificationFailedException {
+		// XXX - Cancel current purchase
 	}
 
 	public void startNewPurchase() throws VerificationFailedException {
@@ -54,80 +41,46 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 	}
 
 	public List<StockItem> loadWarehouseState() {
-		// XXX mock implementation
-		//List<StockItem> dataset = new ArrayList<StockItem>();
 
-		List<StockItem> dataset = service.getStockitem();
-		//return session.createQuery("from StockItem").list();
-		
+		@SuppressWarnings("unchecked")
+		List<StockItem> dataset = HibernateUtil.currentSession()
+				.createQuery("from StockItem").list();
+
 		return dataset;
 	}
-	
-	public void addNewStockItem(StockItem good) throws VerificationFailedException {
-		List<StockItem> goods = new ArrayList<StockItem>();
-		goods.add(good);
-		saveEntities(goods);
-	}
-	
-	public void modifyStockItem(StockItem good) throws VerificationFailedException {
-		List<StockItem> goods = new ArrayList<StockItem>();
-		goods.add(good);
-		updateEntities(goods);
+
+	public List<SoldItem> loadSaleHistoryState() {
+
+		@SuppressWarnings("unchecked")
+		List<SoldItem> dataset = HibernateUtil.currentSession()
+				.createQuery("from SoldHistoryItem").list();
+		return dataset;
 	}
 
-
-	public void modifyStockItems(List<StockItem> goods) throws VerificationFailedException {
-		updateEntities(goods);
+	@Override
+	public void addNewStockItem(StockItem good)
+			throws VerificationFailedException {
+		// TODO Auto-generated method stub
+		
 	}
 
-	
-	private void saveEntities(List<? extends DisplayableItem> items) throws VerificationFailedException {
-		Transaction transaction = null;
-
-		try {
-			transaction = session.beginTransaction();
-			for (DisplayableItem item : items) {
-				session.persist(item);
-			}
-			session.flush();
-			transaction.commit();
-		} catch (Exception e) {
-			if (transaction != null) {
-				transaction.rollback();
-			}
-			log.error(e);
-			throw new VerificationFailedException(e);
-		}
-	}
-	
-	private void updateEntities(List<? extends DisplayableItem> items) throws VerificationFailedException {
-		Transaction transaction = null;
-
-		try {
-			transaction = session.beginTransaction();
-			for (DisplayableItem item : items) {
-				session.merge(item);
-			}
-			session.flush();
-			transaction.commit();
-		} catch (Exception e) {
-			if (transaction != null) {
-				transaction.rollback();
-			}
-			log.error(e);
-			throw new VerificationFailedException(e);
-		}
+	@Override
+	public void modifyStockItem(StockItem good)
+			throws VerificationFailedException {
+		// TODO Auto-generated method stub
+		
 	}
 
-
-
-
+	@Override
+	public void modifyStockItems(List<StockItem> goods)
+			throws VerificationFailedException {
+		// TODO Auto-generated method stub
+		
+	}
 
 	@Override
 	public void addNewOrder(Order order) throws VerificationFailedException {
-		List<Order> orders = new ArrayList<Order>();
-		orders.add(order);
-		saveEntities(orders);
+		// TODO Auto-generated method stub
 		
 	}
 }
