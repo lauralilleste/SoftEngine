@@ -165,9 +165,7 @@ public class PurchaseItemPanel extends JPanel {
 
 	private StockItem getStockItemByBarcode() {
 		try {
-			
 			int code = model.getWarehouseTableModel().getTableRows().get(barCode.getSelectedIndex()).getId().intValue();
-			
 			return model.getWarehouseTableModel().getItemById(code);
 		}
 		catch (NumberFormatException ex) {
