@@ -1,5 +1,6 @@
 package ee.ut.math.tvt.salessystem.ui.panels;
 
+import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 import ee.ut.math.tvt.salessystem.ui.model.SalesSystemModel;
@@ -50,6 +51,8 @@ public class PurchaseItemPanel extends JPanel {
 
 	// Warehouse model
 	private final SalesSystemModel model;
+	
+	private final SalesDomainController domainController;
 
 	/**
 	 * Constructs new purchase item panel.
@@ -57,8 +60,9 @@ public class PurchaseItemPanel extends JPanel {
 	 * @param model
 	 *          composite model of the warehouse and the shopping cart.
 	 */
-	public PurchaseItemPanel(SalesSystemModel model) {
+	public PurchaseItemPanel(SalesSystemModel model, SalesDomainController controller) {
 		this.model = model;
+		this.domainController=controller;
 		setLayout(new GridBagLayout());
 		add(drawDialogPane(), getDialogPaneConstraints());
 		add(drawBasketPane(), getBasketPaneConstraints());
@@ -213,6 +217,8 @@ public class PurchaseItemPanel extends JPanel {
 		nameField.setText("");
 		priceField.setText("");
 	}
+	
+
 
 	/*
 	 * === Ideally, UI's layout and behavior should be kept as separated as

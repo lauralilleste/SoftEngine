@@ -37,7 +37,8 @@ public class SalesSystemModel {
 
         // populate stock model with data from the warehouse
         warehouseTableModel.populateWithData(domainController.loadWarehouseState());
-        historyTableModel.populateWithData(domainController.loadHistory());
+      //  historyTableModel.populateWithData(domainController.loadHistory());
+        log.info("Data loading from DB was successful");
 		
 
     }

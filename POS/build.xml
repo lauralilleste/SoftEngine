@@ -13,6 +13,8 @@
 	<property name="test.reports.dir" value="${build.dir}/reports/"/>
 	<property name="lib.dir" value="${basedir}/lib"/>
 	
+	
+	
 	<!-- database variables -->
 	
 	<property name="data.dir" value="${basedir}/data"/>
@@ -95,6 +97,10 @@
 		<java classname="ee.ut.math.tvt.SoftEngine.Intro" classpathref="test.classpath" fork="yes">
 			<arg value="console" />
 		</java>
+	</target>
+	
+	<target name="jrun" depends="dist" description="Runs the jar file">
+		<java jar="${dist.dir}/SoftEngine.jar" fork="true" />
 	</target>
 
 	<target name="dist" depends="build">

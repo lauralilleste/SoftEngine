@@ -33,14 +33,14 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 		saveEntities(goods);
 	}
 	
-	public List<Order> loadHistory() {
-		List<Order> orders = session.createQuery("from AcceptedOrder").list();
+	//public List<Order> loadHistory() {
+		//List<Order> orders = session.createQuery("from Order").list();
 
-		for (Order order : orders) {
-			order.setSoldItems(session.createQuery("from SoldItem where acceptedorder_id = " + order.getId()).list());
-		}
-		return orders;
-	}
+	//	for (Order order : orders) {
+		//	order.setSoldItems(session.createQuery("from SoldItem where order_id = " + order.getId()).list());
+	//	}
+	//	return orders;
+	//}
 
 	public void cancelCurrentPurchase() throws VerificationFailedException {				
 		// XXX - Cancel current purchase
@@ -57,10 +57,10 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 		// XXX mock implementation
 		//List<StockItem> dataset = new ArrayList<StockItem>();
 
-		//List<StockItem> dataset = service.getStockitem();
-		return session.createQuery("from StockItem").list();
+		List<StockItem> dataset = service.getStockitem();
+		//return session.createQuery("from StockItem").list();
 		
-		//return dataset;
+		return dataset;
 	}
 	
 	public void addNewStockItem(StockItem good) throws VerificationFailedException {
@@ -96,7 +96,7 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 				transaction.rollback();
 			}
 			log.error(e);
-			//throw new VerificationFailedException(e);
+			throw new VerificationFailedException(e);
 		}
 	}
 	
@@ -115,7 +115,7 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 				transaction.rollback();
 			}
 			log.error(e);
-			throw new VerificationFailedException();
+			throw new VerificationFailedException(e);
 		}
 	}
 
@@ -125,7 +125,9 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 
 	@Override
 	public void addNewOrder(Order order) throws VerificationFailedException {
-		// TODO Auto-generated method stub
+		List<Order> orders = new ArrayList<Order>();
+		orders.add(order);
+		saveEntities(orders);
 		
 	}
 }
