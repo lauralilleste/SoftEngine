@@ -24,9 +24,8 @@ import javax.persistence.Table;
 public class SoldItem implements Cloneable, DisplayableItem {
 
 	
-	private static long ID=1;
-	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
     private Long id;
 	
@@ -51,16 +50,16 @@ public class SoldItem implements Cloneable, DisplayableItem {
 
     
     public SoldItem(StockItem stockItem, int quantity) {
-    	this.id=ID;
+    	this.id=id;
         this.stockItem = stockItem;
         this.name = stockItem.getName();
         this.price = stockItem.getPrice();
         this.quantity = quantity;
-        ID+=1;
+       
     }
     
     public SoldItem(){
-    	ID+=1;
+    	
     }
     
     

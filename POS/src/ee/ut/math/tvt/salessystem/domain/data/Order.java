@@ -19,7 +19,7 @@ public class Order implements DisplayableItem {
 	private final Long id;
 	
 	@OneToMany(mappedBy="order")
-	private final List<SoldItem> soldItem;
+	private List<SoldItem> soldItem;
 	
 	@Column(name="date")
 	private final String date;
@@ -44,6 +44,10 @@ public class Order implements DisplayableItem {
 
 	public List<SoldItem> getSoldItem() {
 		return soldItem;
+	}
+	
+	public void setSoldItems(List<SoldItem> soldItems) {
+		this.soldItem = soldItems;
 	}
 
 	public String getDate() {

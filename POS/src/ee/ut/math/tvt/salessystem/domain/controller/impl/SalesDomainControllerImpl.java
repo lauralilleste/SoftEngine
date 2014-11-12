@@ -3,8 +3,14 @@ package ee.ut.math.tvt.salessystem.domain.controller.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
 import ee.ut.math.tvt.salessystem.domain.exception.VerificationFailedException;
 import ee.ut.math.tvt.salessystem.domain.controller.SalesDomainController;
+import ee.ut.math.tvt.salessystem.domain.data.DisplayableItem;
+import ee.ut.math.tvt.salessystem.domain.data.Order;
 import ee.ut.math.tvt.salessystem.domain.data.SoldItem;
 import ee.ut.math.tvt.salessystem.domain.data.StockItem;
 import ee.ut.math.tvt.salessystem.util.HibernateUtil;
@@ -16,14 +22,24 @@ import ee.ut.math.tvt.salesystem.service.*;
  */
 public class SalesDomainControllerImpl implements SalesDomainController {
 	
-	//HibernateDataService service = new HibernateDataService();
+	private final Session session = HibernateUtil.currentSession();
 	
+	private static final Logger log = Logger.getLogger(SalesDomainControllerImpl.class);
+	
+	HibernateDataService service=new HibernateDataService();
 	
 	public void submitCurrentPurchase(List<SoldItem> goods) throws VerificationFailedException {
-		// Let's assume we have checked and found out that the buyer is underaged and
-		// cannot buy chupa-chups
-		//throw new VerificationFailedException("Underaged!");
-		// XXX - Save purchase
+
+		saveEntities(goods);
+	}
+	
+	public List<Order> loadHistory() {
+		List<Order> orders = session.createQuery("from AcceptedOrder").list();
+
+		for (Order order : orders) {
+			order.setSoldItems(session.createQuery("from SoldItem where acceptedorder_id = " + order.getId()).list());
+		}
+		return orders;
 	}
 
 	public void cancelCurrentPurchase() throws VerificationFailedException {				
@@ -39,11 +55,77 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 
 	public List<StockItem> loadWarehouseState() {
 		// XXX mock implementation
-		List<StockItem> dataset = new ArrayList<StockItem>();
+		//List<StockItem> dataset = new ArrayList<StockItem>();
 
 		//List<StockItem> dataset = service.getStockitem();
-	
+		return session.createQuery("from StockItem").list();
 		
-		return dataset;
+		//return dataset;
+	}
+	
+	public void addNewStockItem(StockItem good) throws VerificationFailedException {
+		List<StockItem> goods = new ArrayList<StockItem>();
+		goods.add(good);
+		saveEntities(goods);
+	}
+	
+	public void modifyStockItem(StockItem good) throws VerificationFailedException {
+		List<StockItem> goods = new ArrayList<StockItem>();
+		goods.add(good);
+		updateEntities(goods);
+	}
+
+
+	public void modifyStockItems(List<StockItem> goods) throws VerificationFailedException {
+		updateEntities(goods);
+	}
+
+	
+	private void saveEntities(List<? extends DisplayableItem> items) throws VerificationFailedException {
+		Transaction transaction = null;
+
+		try {
+			transaction = session.beginTransaction();
+			for (DisplayableItem item : items) {
+				session.persist(item);
+			}
+			session.flush();
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			log.error(e);
+			//throw new VerificationFailedException(e);
+		}
+	}
+	
+	private void updateEntities(List<? extends DisplayableItem> items) throws VerificationFailedException {
+		Transaction transaction = null;
+
+		try {
+			transaction = session.beginTransaction();
+			for (DisplayableItem item : items) {
+				session.merge(item);
+			}
+			session.flush();
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			log.error(e);
+			throw new VerificationFailedException();
+		}
+	}
+
+
+
+
+
+	@Override
+	public void addNewOrder(Order order) throws VerificationFailedException {
+		// TODO Auto-generated method stub
+		
 	}
 }

@@ -21,9 +21,10 @@ import javax.persistence.Table;
 @Table(name = "STOCKITEM")
 public class StockItem implements Cloneable, DisplayableItem {
 		
-	private static long ID =1;
+	
 	
 	 @Id
+	 @GeneratedValue(strategy = GenerationType.IDENTITY)
 	    @Column(name="ID")
 	    private Long id;
 
@@ -53,7 +54,7 @@ public class StockItem implements Cloneable, DisplayableItem {
         this.name = name;
         this.description = desc;
         this.price = price;
-        ID+=1;
+       
     }
     
     public StockItem(Long id, String name, String desc, double price, int quantity) {
@@ -62,14 +63,14 @@ public class StockItem implements Cloneable, DisplayableItem {
         this.description = desc;
         this.price = price;
         this.quantity = quantity;
-        ID+=1;
+       
     }
 
     /**
      * Constructs new  <code>StockItem</code>.
      */
     public StockItem() {
-    	ID+=1;
+    
     }
 
     public String getDescription() {
