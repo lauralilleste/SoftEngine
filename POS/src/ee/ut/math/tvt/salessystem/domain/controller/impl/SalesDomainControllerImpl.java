@@ -53,34 +53,10 @@ public class SalesDomainControllerImpl implements SalesDomainController {
 
 		@SuppressWarnings("unchecked")
 		List<SoldItem> dataset = HibernateUtil.currentSession()
-				.createQuery("from SoldHistoryItem").list();
+				.createQuery("from SoldItem").list();
 		return dataset;
 	}
 
-	@Override
-	public void addNewStockItem(StockItem good)
-			throws VerificationFailedException {
-		// TODO Auto-generated method stub
-		
+	
 	}
 
-	@Override
-	public void modifyStockItem(StockItem good)
-			throws VerificationFailedException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void modifyStockItems(List<StockItem> goods)
-			throws VerificationFailedException {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void addNewOrder(Order order) throws VerificationFailedException {
-		// TODO Auto-generated method stub
-		
-	}
-}

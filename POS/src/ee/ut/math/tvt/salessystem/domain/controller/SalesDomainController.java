@@ -51,14 +51,7 @@ public interface SalesDomainController {
             throws VerificationFailedException;
 
 	public void endSession();
-	
-	public void addNewStockItem(StockItem good) throws VerificationFailedException;
 
-	public void modifyStockItem(StockItem good) throws VerificationFailedException;
-
-	public void modifyStockItems(List<StockItem> goods) throws VerificationFailedException;
-
-	public void addNewOrder(Order order) throws VerificationFailedException;
 
     
 }
