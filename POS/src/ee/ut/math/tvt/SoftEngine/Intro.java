@@ -16,6 +16,8 @@ public class Intro {
 private static final Logger log = Logger.getLogger(Intro.class);
 private static final String MODE = "console";
 
+//kommentaar
+
 public static void main(String[] args) {
 	BasicConfigurator.configure();
 
