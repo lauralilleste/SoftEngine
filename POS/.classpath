@@ -25,7 +25,7 @@
 	<classpathentry exported="true" kind="lib" path="lib/xercesImpl.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/xml-apis.jar"/>
 	<classpathentry exported="true" kind="lib" path="/lab5-demo/lib/hibernate/dom4j-1.6.1.jar"/>
-	<classpathentry exported="true" kind="lib" path="/lab6test/lib/junit-4.10.jar"/>
 	<classpathentry kind="src" path="test"/>
+	<classpathentry kind="lib" path="lib/junit-4.10.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
