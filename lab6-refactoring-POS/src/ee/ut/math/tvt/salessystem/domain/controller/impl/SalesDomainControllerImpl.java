@@ -129,11 +129,8 @@ public class SalesDomainControllerImpl implements SalesDomainController {
         HibernateUtil.closeSession();
     }
 
-	@Override
-	public void submitCurrentPurchase(List<SoldItem> goods, Client client)
-			throws VerificationFailedException {
-		// TODO Auto-generated method stub
-		
-	}
+	
+
+	
 
 }

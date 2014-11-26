@@ -42,7 +42,11 @@ public class Sale implements DisplayableItem {
         this.sellingTime = new Date();
     }
 
-    public Client getClient() {
+    public Sale(Client selectedClient) {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Client getClient() {
         return client;
     }
 
