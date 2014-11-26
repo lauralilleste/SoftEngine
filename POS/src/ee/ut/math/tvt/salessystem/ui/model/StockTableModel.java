@@ -99,4 +99,16 @@ public class StockTableModel extends SalesSystemTableModel<StockItem> {
 		return buffer.toString();
 	}
 
+	public List<StockItem> getItemByName(String name) {
+		List<StockItem> items = new ArrayList<StockItem>();
+
+		for (final StockItem item : rows) {
+			if (item.getName() == name) {
+				items.add(item);
+			}
+		}
+		return items;
+	}
+	
+
 }

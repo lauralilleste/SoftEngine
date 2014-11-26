@@ -65,5 +65,15 @@ public class Order implements DisplayableItem {
 		} return purchaseSum.toString();
 	}
 	
+	public void addSoldItem(SoldItem item) {
+		soldItem.add(item);
+	}
+	
+	public String getTotalSumInString() {
+		return getTotalSum().toString();
+	}
+
+
+	
 
 }
