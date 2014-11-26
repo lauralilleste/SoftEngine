@@ -65,37 +65,29 @@ public class SalesDomainControllerImpl implements SalesDomainController {
     }
 
 
-    public void submitCurrentPurchase(List<SoldItem> soldItems, Client currentClient) {
+    public void registerSale(Sale sale) throws VerificationFailedException {
+		
+		 // Begin transaction
+       Transaction tx = session.beginTransaction();
 
-        // Begin transaction
-        Transaction tx = session.beginTransaction();
+       sale.setSellingTime(new Date());
 
-        // construct new sale object
-        Sale sale = new Sale(soldItems);
-        //sale.setId(null);
-        sale.setSellingTime(new Date());
+       // Reduce quantities of stockItems in warehouse
+       for (SoldItem item : sale.getSoldItems()) {
+    	   item.setSale(sale);
+           StockItem stockItem = getStockItem(item.getStockItem().getId());
+           stockItem.setQuantity(stockItem.getQuantity() - item.getQuantity());
+           session.save(stockItem);
+       }
 
-        // set client who made the sale
-        sale.setClient(currentClient);
+       session.save(sale);
 
-        // Reduce quantities of stockItems in warehouse
-        for (SoldItem item : soldItems) {
-            // Associate with current sale
-            item.setSale(sale);
+       // end transaction
+       tx.commit();
 
-            StockItem stockItem = getStockItem(item.getStockItem().getId());
-            stockItem.setQuantity(stockItem.getQuantity() - item.getQuantity());
-            session.save(stockItem);
-        }
-
-        session.save(sale);
-
-        // end transaction
-        tx.commit();
-
-        model.getPurchaseHistoryTableModel().addRow(sale);
-
-    }
+       model.getPurchaseHistoryTableModel().addRow(sale);
+		
+	}
 
 
     public void createStockItem(StockItem stockItem) {
